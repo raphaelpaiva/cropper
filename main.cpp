@@ -6,14 +6,17 @@
 
 #include "command.h"
 #include "cropper.h"
+#include "scale.h"
 
 QMap<QString, Command*> command_map;
 
 void init_command_map()
 {
     Cropper *cropper = new Cropper();
+    Scale *scale = new Scale();
 
     command_map[cropper->name] = cropper;
+    command_map[scale->name] = scale;
 }
 
 QMap<Command *, QStringList> retrieve_tasks(QStringList args)
@@ -50,14 +53,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    qDebug() << "initializing command map...";
     init_command_map();
-    qDebug() << command_map;
 
-    qDebug() << "Parsing arguments and retrieving tasks";
     QMap<Command *, QStringList> tasks = retrieve_tasks(a.arguments());
-
-    qDebug() << "cropper!";
 
     QMapIterator<Command *, QStringList> i(tasks);
 

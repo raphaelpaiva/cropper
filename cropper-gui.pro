@@ -13,10 +13,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp\
         cropper.cpp \
-    command.cpp
+    command.cpp \
+    scale.cpp
 
 HEADERS  += mainwindow.h\
             cropper.h \
-    command.h
+    command.h \
+    scale.h
 
 FORMS    += mainwindow.ui
