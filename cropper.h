@@ -2,13 +2,17 @@
 #define CROPPER_H
 
 #include <QString>
+#include <QStringList>
 #include <QtGui/QImage>
 
-class Cropper
+#include "command.h"
+
+class Cropper : public Command
 {
 public:
-    Cropper();
-    static QImage crop(QString filename, int x1, int y1, int x2, int y2);
+    Cropper() {name = "crop";}
+    QImage crop(QString filename, int x1, int y1, int x2, int y2);
+    void run(QStringList args);
 };
 
 #endif // CROPPER_H
