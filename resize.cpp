@@ -1,4 +1,4 @@
-#include "scale.h"
+#include "resize.h"
 
 #include <QString>
 #include <QStringList>
@@ -9,10 +9,10 @@
 /**
 * args: sourcefile width height destfile
 */
-void Scale::run(QStringList args)
+void Resize::run(QStringList args)
 {
     if (args.size() != 4) {
-        qDebug() << "error: crop requires 3 parameters: sourcefile scale% destfile";
+        qDebug() << "error: scale requires 4 parameters: sourcefile width heigth destfile";
         return;
     }
 
@@ -21,15 +21,15 @@ void Scale::run(QStringList args)
     int height         = args.at(2).toInt();
     QString destfile   = args.at(3);
 
-    QImage scaled = scale(sourcefile, width, height);
+    QImage scaled = resize(sourcefile, width, height);
 
     scaled.save(destfile);
 }
 
-QImage Scale::scale(QString sourcefile, int width, int height)
+QImage Resize::resize(QString sourcefile, int width, int height)
 {
     QImage original(sourcefile);
-    QImage scaled(width, height, original.format());
+    QImage resized(width, height, original.format());
 
     double x_ratio = original.width()/(double)width;
     double y_ratio = original.height()/(double)height;
@@ -45,9 +45,9 @@ QImage Scale::scale(QString sourcefile, int width, int height)
 
             int color = original.pixel(px, py);
 
-            scaled.setPixel(j, i, color);
+            resized.setPixel(j, i, color);
         }
     }
 
-    return scaled;
+    return resized;
 }

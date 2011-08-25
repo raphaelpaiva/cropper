@@ -6,17 +6,17 @@
 
 #include "command.h"
 #include "cropper.h"
-#include "scale.h"
+#include "resize.h"
 
 QMap<QString, Command*> command_map;
 
 void init_command_map()
 {
     Cropper *cropper = new Cropper();
-    Scale *scale = new Scale();
+    Resize *resize = new Resize();
 
     command_map[cropper->name] = cropper;
-    command_map[scale->name] = scale;
+    command_map[resize->name] = resize;
 }
 
 QMap<Command *, QStringList> retrieve_tasks(QStringList args)
