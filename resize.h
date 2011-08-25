@@ -11,7 +11,7 @@ public:
     Resize() {name = "resize";}
 
     void run(QStringList args);
-    QImage resize(QString sourcefile, int width, int height);
+    QImage resize(QImage original, int width, int height);
 };
 
 #endif // SCALE_H

@@ -14,11 +14,13 @@ SOURCES += main.cpp\
         mainwindow.cpp\
         cropper.cpp \
     command.cpp \
-    resize.cpp
+    resize.cpp \
+    scale.cpp
 
 HEADERS  += mainwindow.h\
             cropper.h \
     command.h \
-    resize.h
+    resize.h \
+    scale.h
 
 FORMS    += mainwindow.ui

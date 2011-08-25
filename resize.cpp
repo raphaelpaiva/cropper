@@ -21,14 +21,15 @@ void Resize::run(QStringList args)
     int height         = args.at(2).toInt();
     QString destfile   = args.at(3);
 
-    QImage scaled = resize(sourcefile, width, height);
+    QImage original(sourcefile);
+
+    QImage scaled = resize(original, width, height);
 
     scaled.save(destfile);
 }
 
-QImage Resize::resize(QString sourcefile, int width, int height)
+QImage Resize::resize(QImage original, int width, int height)
 {
-    QImage original(sourcefile);
     QImage resized(width, height, original.format());
 
     double x_ratio = original.width()/(double)width;
