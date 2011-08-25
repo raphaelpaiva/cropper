@@ -12,7 +12,7 @@
 void Resize::run(QStringList args)
 {
     if (args.size() != 4) {
-        qDebug() << "error: scale requires 4 parameters: sourcefile width heigth destfile";
+        qDebug() << "error: resize requires 4 parameters: sourcefile width heigth destfile";
         return;
     }
 
