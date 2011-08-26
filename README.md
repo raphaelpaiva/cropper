@@ -7,3 +7,4 @@ Description
 ===========
 
 Small Qt application to crop and resize images. For now command-line interface only.
+

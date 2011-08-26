@@ -14,7 +14,7 @@ void Scale::run(QStringList args)
     }
 
     QString sourcefile = args.at(0);
-    double scale          = args.at(1).toDouble();
+    double scale       = args.at(1).toDouble();
     QString destfile   = args.at(2);
 
     QImage original(sourcefile);
