@@ -6,11 +6,10 @@
 /**
 * args: sourcefile scale destfile
 */
-void Scale::run(QStringList args)
+void Scale::run(QStringList args) throw(CommandException)
 {
     if (args.size() != 3) {
-        qDebug() << "error: scale requires 3 parameters: sourcefile scale destfile";
-        return;
+        throw CommandException("scale requires 3 parameters: sourcefile scale destfile");
     }
 
     QString sourcefile = args.at(0);

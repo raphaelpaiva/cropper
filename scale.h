@@ -9,7 +9,7 @@ class Scale : public Resize
 {
 public:
     Scale() {name = "scale";}
-    void run(QStringList args);
+    void run(QStringList args) throw(CommandException);
 };
 
 #endif // SCALE_H

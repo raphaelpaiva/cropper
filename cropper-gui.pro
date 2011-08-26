@@ -15,12 +15,14 @@ SOURCES += main.cpp\
         cropper.cpp \
     command.cpp \
     resize.cpp \
-    scale.cpp
+    scale.cpp \
+    commandexception.cpp
 
 HEADERS  += mainwindow.h\
             cropper.h \
     command.h \
     resize.h \
-    scale.h
+    scale.h \
+    commandexception.h
 
 FORMS    += mainwindow.ui

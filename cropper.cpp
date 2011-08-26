@@ -7,11 +7,10 @@
 /**
 * args: sourcefile x1 y1 x2 y2 destfile
 */
-void Cropper::run(QStringList args)
+void Cropper::run(QStringList args) throw(CommandException)
 {
     if (args.size() != 6) {
-        qDebug() << "error: crop requires 5 parameters: sourcefile x1 y1 x2 y2 destfile";
-        return;
+        throw CommandException("crop requires 5 parameters: sourcefile x1 y1 x2 y2 destfile");
     }
 
     QString sourcefile = args.at(0);

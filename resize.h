@@ -10,7 +10,7 @@ class Resize : public Command
 public:
     Resize() {name = "resize";}
 
-    void run(QStringList args);
+    void run(QStringList args) throw(CommandException);
     QImage resize(QImage original, int width, int height);
 };
 

@@ -5,6 +5,7 @@
 #include <QList>
 
 #include "command.h"
+#include "commandexception.h"
 #include "cropper.h"
 #include "resize.h"
 #include "scale.h"
@@ -66,7 +67,15 @@ int main(int argc, char *argv[])
     {
         i.next();
         qDebug() << i.key()->name << i.value();
-        i.key()->run(i.value());
+
+        try
+        {
+            i.key()->run(i.value());
+        }
+        catch (CommandException& cme)
+        {
+            qDebug() << "Exception running command: " << cme.message;
+        }
     }
 
     a.exit();

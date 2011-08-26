@@ -3,12 +3,13 @@
 
 #include <QString>
 #include <QStringList>
+#include "commandexception.h"
 
 class Command
 {
 public:
     Command();
-    virtual void run(QStringList args)=0;
+    virtual void run(QStringList args) throw(CommandException)=0;
     QString name;
 };
 

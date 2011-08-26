@@ -9,11 +9,10 @@
 /**
 * args: sourcefile width height destfile
 */
-void Resize::run(QStringList args)
+void Resize::run(QStringList args) throw(CommandException)
 {
     if (args.size() != 4) {
-        qDebug() << "error: resize requires 4 parameters: sourcefile width heigth destfile";
-        return;
+        throw CommandException("resize requires 4 parameters: sourcefile width heigth destfile");
     }
 
     QString sourcefile = args.at(0);
