@@ -13,7 +13,7 @@
 */
 void Resize::run(QStringList args) throw(CommandException)
 {
-    if (args.size() != 4) {
+    if (args.size() != 4 || args.isEmpty()) {
         throw CommandException("resize requires 4 parameters: sourcefile width heigth destfile");
     }
 
@@ -27,4 +27,9 @@ void Resize::run(QStringList args) throw(CommandException)
     QImage scaled = ImageProcessor::resize(original, width, height);
 
     scaled.save(destfile);
+}
+
+QString Resize::usage()
+{
+    return "<sourcefile> <width> <height> <destfile>";
 }

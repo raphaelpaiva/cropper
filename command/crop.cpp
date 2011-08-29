@@ -9,7 +9,7 @@
 */
 void Cropper::run(QStringList args) throw(CommandException)
 {
-    if (args.size() != 6) {
+    if (args.size() != 6 || args.isEmpty()) {
         throw CommandException("crop requires 5 parameters: sourcefile x1 y1 x2 y2 destfile");
     }
 
@@ -25,4 +25,9 @@ void Cropper::run(QStringList args) throw(CommandException)
     QImage cropped = ImageProcessor::crop(original, x1, y1, x2, y2);
 
     cropped.save(destfile);
+}
+
+QString Cropper::usage()
+{
+    return "<sourcefile> <x1> <y1> <x2> <y2> <destfile>";
 }

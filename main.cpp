@@ -56,6 +56,21 @@ QMap<Command *, QStringList> retrieve_tasks(QStringList args)
     return tasks;
 }
 
+void print_usage()
+{
+    QMapIterator<QString, Command *>i(command_map);
+
+    qout << "cropper usage: " << endl;
+    qout << "\t<command> [params]" << endl;
+
+    while(i.hasNext())
+    {
+        i.next();
+
+        qout << "\t " << i.key() << ": " << i.value()->usage() << endl;
+    }
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -63,6 +78,12 @@ int main(int argc, char *argv[])
     init_command_map();
 
     QMap<Command *, QStringList> tasks = retrieve_tasks(a.arguments());
+
+    if (tasks.isEmpty())
+    {
+        print_usage();
+        a.exit();
+    }
 
     QMapIterator<Command *, QStringList> i(tasks);
 
@@ -76,7 +97,9 @@ int main(int argc, char *argv[])
         }
         catch (CommandException& cme)
         {
-            qout << "Exception running command: " << cme.message;
+            qout << "Exception running command: " << cme.message << endl;
+
+            qout << i.key()->name << " usage:" << endl << "\t " << i.key()->usage() << endl;
         }
     }
 

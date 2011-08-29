@@ -2,6 +2,7 @@
 #define COMMAND_H
 
 #include <QStringList>
+#include <QString>
 #include "commandexception.h"
 
 class Command
@@ -9,6 +10,7 @@ class Command
 public:
     Command();
     virtual void run(QStringList args) throw(CommandException)=0;
+    virtual QString usage()=0;
     QString name;
 };
 

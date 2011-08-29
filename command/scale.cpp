@@ -9,7 +9,7 @@
 */
 void Scale::run(QStringList args) throw(CommandException)
 {
-    if (args.size() != 3) {
+    if (args.size() != 3  || args.isEmpty()) {
         throw CommandException("scale requires 3 parameters: sourcefile scale destfile");
     }
 
@@ -25,4 +25,9 @@ void Scale::run(QStringList args) throw(CommandException)
     QImage scaled = ImageProcessor::resize(original, scale*width, scale*height);
 
     scaled.save(destfile);
+}
+
+QString Scale::usage()
+{
+    return "<sourcefile> <scale (double)> <destfile>";
 }
