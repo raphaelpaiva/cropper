@@ -6,7 +6,7 @@
 
 #include "command/command.h"
 #include "command/commandexception.h"
-#include "command/cropper.h"
+#include "command/crop.h"
 #include "command/resize.h"
 #include "command/scale.h"
 

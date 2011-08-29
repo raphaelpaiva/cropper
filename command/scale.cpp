@@ -3,6 +3,8 @@
 #include <QString>
 #include <QDebug>
 
+#include "../image_processing/imageprocessor.h"
+
 /**
 * args: sourcefile scale destfile
 */
@@ -21,7 +23,7 @@ void Scale::run(QStringList args) throw(CommandException)
     int width = original.width();
     int height = original.height();
 
-    QImage scaled = resize(original, scale*width, scale*height);
+    QImage scaled = ImageProcessor::resize(original, scale*width, scale*height);
 
     scaled.save(destfile);
 }

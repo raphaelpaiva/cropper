@@ -6,6 +6,8 @@
 
 #include <cmath>
 
+#include "../image_processing/imageprocessor.h"
+
 /**
 * args: sourcefile width height destfile
 */
@@ -22,32 +24,7 @@ void Resize::run(QStringList args) throw(CommandException)
 
     QImage original(sourcefile);
 
-    QImage scaled = resize(original, width, height);
+    QImage scaled = ImageProcessor::resize(original, width, height);
 
     scaled.save(destfile);
-}
-
-QImage Resize::resize(QImage original, int width, int height)
-{
-    QImage resized(width, height, original.format());
-
-    double x_ratio = original.width()/(double)width;
-    double y_ratio = original.height()/(double)height;
-
-    double px, py;
-
-    for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < width; j++)
-        {
-            px = floor(j*x_ratio);
-            py = floor(i*y_ratio);
-
-            int color = original.pixel(px, py);
-
-            resized.setPixel(j, i, color);
-        }
-    }
-
-    return resized;
 }
