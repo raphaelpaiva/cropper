@@ -1,7 +1,7 @@
 #ifndef RESIZE_H
 #define RESIZE_H
 
-#include "command.h"
+#include "command/command.h"
 #include <QStringList>
 #include <QImage>
 

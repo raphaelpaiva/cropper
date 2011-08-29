@@ -5,7 +5,7 @@
 #include <QStringList>
 #include <QtGui/QImage>
 
-#include "command.h"
+#include "command/command.h"
 
 class Cropper : public Command
 {

@@ -12,17 +12,17 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp\
-        cropper.cpp \
-    command.cpp \
-    resize.cpp \
-    scale.cpp \
-    commandexception.cpp
+        command/cropper.cpp \
+    command/command.cpp \
+    command/resize.cpp \
+    command/scale.cpp \
+    command/commandexception.cpp
 
 HEADERS  += mainwindow.h\
-            cropper.h \
-    command.h \
-    resize.h \
-    scale.h \
-    commandexception.h
+            command/cropper.h \
+    command/command.h \
+    command/resize.h \
+    command/scale.h \
+    command/commandexception.h
 
 FORMS    += mainwindow.ui

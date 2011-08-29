@@ -4,11 +4,11 @@
 #include <QStringList>
 #include <QList>
 
-#include "command.h"
-#include "commandexception.h"
-#include "cropper.h"
-#include "resize.h"
-#include "scale.h"
+#include "command/command.h"
+#include "command/commandexception.h"
+#include "command/cropper.h"
+#include "command/resize.h"
+#include "command/scale.h"
 
 QMap<QString, Command*> command_map;
 
