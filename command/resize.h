@@ -1,7 +1,7 @@
 #ifndef RESIZE_H
 #define RESIZE_H
 
-#include "command/command.h"
+#include "command.h"
 #include <QStringList>
 
 class Resize : public Command

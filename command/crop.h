@@ -1,7 +1,6 @@
 #ifndef CROPPER_H
 #define CROPPER_H
 
-#include <QString>
 #include <QStringList>
 
 #include "command.h"

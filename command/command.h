@@ -1,7 +1,6 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-#include <QString>
 #include <QStringList>
 #include "commandexception.h"
 

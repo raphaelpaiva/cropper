@@ -1,7 +1,6 @@
 #include "scale.h"
 
 #include <QString>
-#include <QDebug>
 
 #include "../image_processing/imageprocessor.h"
 
