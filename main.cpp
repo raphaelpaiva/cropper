@@ -1,8 +1,10 @@
+#include <iostream>
+
 #include <QtGui/QApplication>
-#include <QDebug>
 #include <QMap>
 #include <QStringList>
 #include <QList>
+#include <QTextStream>
 
 #include "command/command.h"
 #include "command/commandexception.h"
@@ -11,6 +13,7 @@
 #include "command/scale.h"
 
 QMap<QString, Command*> command_map;
+QTextStream qout(stdout);
 
 void init_command_map()
 {
@@ -66,7 +69,6 @@ int main(int argc, char *argv[])
     while(i.hasNext())
     {
         i.next();
-        qDebug() << i.key()->name << i.value();
 
         try
         {
@@ -74,7 +76,7 @@ int main(int argc, char *argv[])
         }
         catch (CommandException& cme)
         {
-            qDebug() << "Exception running command: " << cme.message;
+            qout << "Exception running command: " << cme.message;
         }
     }
 
