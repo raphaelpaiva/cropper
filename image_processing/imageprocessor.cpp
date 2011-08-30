@@ -44,3 +44,33 @@ QImage ImageProcessor::resize(QImage original, int width, int height)
 
     return resized;
 }
+
+QImage ImageProcessor::mirror(QImage original)
+{
+    QImage mirrored(original.width(), original.height(), original.format());
+
+    for (int y = 0; y < original.height(); y++)
+    {
+        for (int x = original.width() - 1; x >= 0; x--)
+        {
+            mirrored.setPixel(x, y, original.pixel((original.width() - 1) - x, y));
+        }
+    }
+
+    return mirrored;
+}
+
+QImage ImageProcessor::rotate(QImage original)
+{
+    QImage rotated(original.height(), original.width(), original.format());
+
+    for (int y = 0; y < original.height(); y++)
+    {
+        for (int x = 0; x < original.width(); x++)
+        {
+            rotated.setPixel(y, x, original.pixel(x, y));
+        }
+    }
+
+    return rotated;
+}

@@ -12,6 +12,8 @@
 #include "command/crop.h"
 #include "command/resize.h"
 #include "command/scale.h"
+#include "command/rotate.h"
+#include "command/mirror.h"
 
 QMap<QString, Command*> command_map;
 QTextStream qout(stdout);
@@ -21,10 +23,14 @@ void init_command_map()
     Cropper *cropper = new Cropper();
     Resize *resize   = new Resize();
     Scale  *scale    = new Scale();
+    Rotate *rotate   = new Rotate();
+    Mirror *mirror   = new Mirror();
 
     command_map[cropper->name] = cropper;
-    command_map[resize->name] = resize;
-    command_map[scale->name] = scale;
+    command_map[resize->name]  = resize;
+    command_map[scale->name]   = scale;
+    command_map[rotate->name]  = rotate;
+    command_map[mirror->name]  = mirror;
 }
 
 QMap<Command *, QStringList> retrieve_tasks(QStringList args)
