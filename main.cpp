@@ -5,6 +5,7 @@
 #include <QStringList>
 #include <QList>
 #include <QTextStream>
+#include <QDebug>
 
 #include "command/command.h"
 #include "command/commandexception.h"
@@ -29,27 +30,22 @@ void init_command_map()
 QMap<Command *, QStringList> retrieve_tasks(QStringList args)
 {
     QMap<Command *, QStringList> tasks;
-    for (int i = 1; i < args.size(); i++)
+
+    if ( args.size() > 1 )
     {
-        QString arg = args[i];
+        QString cmd_name = args[1];
 
-        if (command_map[arg])
+        if (command_map.contains(cmd_name))
         {
-            Command *cmd = command_map[arg];
-            QStringList param_list;
+            Command *cmd = command_map[cmd_name];
+            QStringList cmd_args;
 
-            i++;
-            arg = args[i];
-            while((!command_map.contains(arg)) && i < args.size())
+            for (int i = 2; i < args.size(); i++)
             {
-                arg = args[i];
-
-                param_list.push_back(arg);
-
-                i++;
+                cmd_args << args[i];
             }
 
-            tasks[cmd] = param_list;
+            tasks[cmd] = cmd_args;
         }
     }
 
