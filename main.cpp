@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
         }
         catch (CommandException& cme)
         {
-            qout << "Exception running command: " << cme.message << endl;
+            qout << "Exception running command " << i.key()->name << ": " << cme.message  << "." << endl;
 
             qout << i.key()->name << " usage:" << endl << "\t " << i.key()->usage() << endl;
         }

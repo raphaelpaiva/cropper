@@ -13,9 +13,16 @@ void Scale::run(QStringList args) throw(CommandException)
         throw CommandException("scale requires 3 parameters: sourcefile scale destfile");
     }
 
+    bool conversion_ok = true;
+
     QString sourcefile = args.at(0);
-    double scale       = args.at(1).toDouble();
+    double scale       = args.at(1).toDouble(&conversion_ok);
     QString destfile   = args.at(2);
+
+    if (!conversion_ok)
+    {
+        throw CommandException("Unable to parse integer parameter");
+    }
 
     QImage original(sourcefile);
 
