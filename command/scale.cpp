@@ -21,7 +21,7 @@ void Scale::run(QStringList args) throw(CommandException)
 
     if (!conversion_ok)
     {
-        throw CommandException("Unable to parse integer parameter");
+        throw CommandException("Unable to parse double parameter");
     }
 
     QImage original(sourcefile);
