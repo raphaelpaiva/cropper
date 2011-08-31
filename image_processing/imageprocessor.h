@@ -12,6 +12,7 @@ public:
     static QImage mirror(QImage original);
     static QImage rotate(QImage orginal);
     static QImage lightness(QImage orginal, double lightnessIntensity);
+    static QImage InterpolatedScale(QImage original);
 };
 
 #endif // IMAGEPROCESSOR_H

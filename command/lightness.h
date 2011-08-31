@@ -7,6 +7,7 @@ class Lightness : public Command
 {
 public:
     Lightness(){name = "lightness";}
+
     void run(QStringList args) throw(CommandException);
     QString usage();
 

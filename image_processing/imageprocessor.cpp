@@ -109,3 +109,86 @@ QImage ImageProcessor::rotate(QImage original)
 
     return rotated;
 }
+
+QImage ImageProcessor::InterpolatedScale(QImage original)
+{
+    int width = original.width();
+    int height = original.height();
+
+    QImage resized(2*width, 2*height, original.format());
+
+    double px, py;
+
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            px = j;
+            py = i;
+
+
+            //Colocando os pixels arrumados na forma
+
+            // A B C
+            // D E F
+            // G H I
+
+
+           int E = original.pixel(px, py);
+           int B = E;
+           int D = E;
+           int F = E;
+           int H = E;
+
+           if (py-1 > 0){
+            B = original.pixel(px,py-1);
+           }
+           if (px-1 > 0){
+            D = original.pixel(px-1,py);
+           }
+           if (px+1 < original.width()){
+            F = original.pixel(px+1, py);
+           }
+           if (py+1 < original.height()){
+            H = original.pixel(px, py+1);
+           }
+
+            //Vamos pegar o pixel central E e dividi-lo em 4 pixels.
+
+            int E0, E1, E2, E3;
+
+            //E calcular o valor da cor de cada um desses 4 pixels.
+
+            if (B != H && D != F) {
+                    E0 = D == B ? D : E;
+                    E1 = B == F ? F : E;
+                    E2 = D == H ? D : E;
+                    E3 = H == F ? F : E;
+            } else {
+                    E0 = E;
+                    E1 = E;
+                    E2 = E;
+                    E3 = E;
+            }
+
+            int nj = j*2;
+            int ni = i*2;
+
+            resized.setPixel(nj, ni, E0);
+
+            if ( nj+1 < resized.width()) {
+                resized.setPixel(nj+1, ni, E1);
+            }
+
+            if (ni + 1 < resized.height()) {
+                resized.setPixel(nj, ni+1, E2);
+            }
+
+            if (nj + 1 < resized.width() && ni + 1 < resized.height()) {
+                resized.setPixel(nj+1, ni+1, E3);
+            }
+        }
+    }
+
+    return resized;
+}

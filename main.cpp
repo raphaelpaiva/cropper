@@ -15,6 +15,7 @@
 #include "command/rotate.h"
 #include "command/mirror.h"
 #include "command/lightness.h"
+#include "command/interpolatedscale.h"
 
 QMap<QString, Command*> command_map;
 QTextStream qout(stdout);
@@ -27,6 +28,7 @@ void init_command_map()
     Rotate *rotate   = new Rotate();
     Mirror *mirror   = new Mirror();
     Lightness *lightness   = new Lightness();
+    InterpolatedScale *interpolated = new InterpolatedScale();
 
 
     command_map[cropper->name] = cropper;
@@ -35,6 +37,7 @@ void init_command_map()
     command_map[rotate->name]  = rotate;
     command_map[mirror->name]  = mirror;
     command_map[lightness->name]  = lightness;
+    command_map[interpolated->name] = interpolated;
 
 }
 

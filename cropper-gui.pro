@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     command/crop.cpp \
     command/rotate.cpp \
     command/mirror.cpp \
-    command/lightness.cpp
+    command/lightness.cpp \
+    command/interpolatedscale.cpp
 
 HEADERS  += mainwindow.h\
     command/command.h \
@@ -31,6 +32,7 @@ HEADERS  += mainwindow.h\
     command/crop.h \
     command/rotate.h \
     command/mirror.h \
-    command/lightness.h
+    command/lightness.h \
+    command/interpolatedscale.h
 
 FORMS    += mainwindow.ui
