@@ -1,6 +1,10 @@
 #include "imageprocessor.h"
 
 #include <cmath>
+#include <QColor>
+#include <QPoint>
+
+#include <QDebug>
 
 QImage ImageProcessor::crop(QImage original, int x1, int y1, int x2, int y2)
 {
@@ -58,6 +62,37 @@ QImage ImageProcessor::mirror(QImage original)
     }
 
     return mirrored;
+}
+
+QImage ImageProcessor::lightness(QImage original, double lightnessIntensity)
+{
+    QImage final(original.width(), original.height(), original.format());
+
+    for (int y = 0; y < original.height(); y++)
+    {
+        for (int x = original.width() - 1; x >= 0; x--)
+        {
+
+
+            QRgb cc = original.pixel(x,y);
+
+            QColor co = QColor::fromRgb(cc);
+
+            int red = (int)(co.red() * lightnessIntensity) ;
+            if (red>0xFF) red=0xFF;
+            int green = (int)(co.green() * lightnessIntensity) ;
+            if (green>0xFF) green=0xFF;
+            int blue = (int)(co.blue() * lightnessIntensity) ;
+            if (blue>0xFF) blue=0xFF;
+            co.setRed(red);
+            co.setGreen(green);
+            co.setBlue(blue);
+
+            final.setPixel(x, y, co.rgb());
+        }
+    }
+
+    return final;
 }
 
 QImage ImageProcessor::rotate(QImage original)

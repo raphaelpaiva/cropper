@@ -14,6 +14,7 @@
 #include "command/scale.h"
 #include "command/rotate.h"
 #include "command/mirror.h"
+#include "command/lightness.h"
 
 QMap<QString, Command*> command_map;
 QTextStream qout(stdout);
@@ -25,12 +26,16 @@ void init_command_map()
     Scale  *scale    = new Scale();
     Rotate *rotate   = new Rotate();
     Mirror *mirror   = new Mirror();
+    Lightness *lightness   = new Lightness();
+
 
     command_map[cropper->name] = cropper;
     command_map[resize->name]  = resize;
     command_map[scale->name]   = scale;
     command_map[rotate->name]  = rotate;
     command_map[mirror->name]  = mirror;
+    command_map[lightness->name]  = lightness;
+
 }
 
 QMap<Command *, QStringList> retrieve_tasks(QStringList args)

@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     image_processing/imageprocessor.cpp \
     command/crop.cpp \
     command/rotate.cpp \
-    command/mirror.cpp
+    command/mirror.cpp \
+    command/lightness.cpp
 
 HEADERS  += mainwindow.h\
     command/command.h \
@@ -29,6 +30,7 @@ HEADERS  += mainwindow.h\
     image_processing/imageprocessor.h \
     command/crop.h \
     command/rotate.h \
-    command/mirror.h
+    command/mirror.h \
+    command/lightness.h
 
 FORMS    += mainwindow.ui
