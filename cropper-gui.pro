@@ -21,7 +21,13 @@ SOURCES += main.cpp\
     command/rotate.cpp \
     command/mirror.cpp \
     command/lightness.cpp \
-    command/interpolatedscale.cpp
+    command/interpolatedscale.cpp \
+    command/interpolated3.cpp \
+    command/invertcolors.cpp \
+    command/grayscale.cpp \
+    command/popart.cpp \
+    command/crazy.cpp \
+    command/merge.cpp
 
 HEADERS  += mainwindow.h\
     command/command.h \
@@ -33,6 +39,12 @@ HEADERS  += mainwindow.h\
     command/rotate.h \
     command/mirror.h \
     command/lightness.h \
-    command/interpolatedscale.h
+    command/interpolatedscale.h \
+    command/interpolated3.h \
+    command/invertcolors.h \
+    command/grayscale.h \
+    command/popart.h \
+    command/crazy.h \
+    command/merge.h
 
 FORMS    += mainwindow.ui

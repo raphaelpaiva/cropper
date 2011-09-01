@@ -16,6 +16,12 @@
 #include "command/mirror.h"
 #include "command/lightness.h"
 #include "command/interpolatedscale.h"
+#include "command/interpolated3.h"
+#include "command/invertcolors.h"
+#include "command/grayscale.h"
+#include "command/popart.h"
+#include "command/crazy.h"
+#include "command/merge.h"
 
 QMap<QString, Command*> command_map;
 QTextStream qout(stdout);
@@ -29,7 +35,12 @@ void init_command_map()
     Mirror *mirror   = new Mirror();
     Lightness *lightness   = new Lightness();
     InterpolatedScale *interpolated = new InterpolatedScale();
-
+    Interpolated3 *interpolated3 = new Interpolated3();
+    InvertColors *invertColors = new InvertColors();
+    GrayScale *grayScale = new GrayScale();
+    PopArt *popArt = new PopArt();
+    Crazy *crazy = new Crazy();
+    Merge *merge = new Merge();
 
     command_map[cropper->name] = cropper;
     command_map[resize->name]  = resize;
@@ -38,8 +49,14 @@ void init_command_map()
     command_map[mirror->name]  = mirror;
     command_map[lightness->name]  = lightness;
     command_map[interpolated->name] = interpolated;
-
+    command_map[interpolated3->name] = interpolated3;
+    command_map[invertColors->name] = invertColors;
+    command_map[grayScale->name]  = grayScale;
+    command_map[popArt->name]  = popArt;
+    command_map[crazy->name]  = crazy;
+    command_map[merge->name]  = merge;
 }
+
 
 QMap<Command *, QStringList> retrieve_tasks(QStringList args)
 {

@@ -13,6 +13,12 @@ public:
     static QImage rotate(QImage orginal);
     static QImage lightness(QImage orginal, double lightnessIntensity);
     static QImage InterpolatedScale(QImage original);
+    static QImage Interpolated3(QImage original);
+    static QImage invertColors(QImage original);
+    static QImage grayScale(QImage original);
+    static QImage popArt(QImage original);
+    static QImage crazy(QImage original);
+    static QImage merge(QImage original, QImage original2);
 };
 
 #endif // IMAGEPROCESSOR_H

@@ -6,7 +6,7 @@
 class InterpolatedScale : public Command
 {
 public:
-    InterpolatedScale() {name = "interpolatedScale";}
+    InterpolatedScale() {name = "scale2x";}
 
     void run(QStringList args) throw(CommandException);
     QString usage();
