@@ -163,6 +163,81 @@ QImage ImageProcessor::crazy(QImage original)
     return final;
 }
 
+QImage ImageProcessor::append(QImage original, QImage original2)
+{
+    int height;
+
+    if (original.height()>original2.height()){
+        height = original.height();
+    }else{
+        height = original2.height();
+    }
+    QImage final(original.width() + original2.width(), height, original.format());
+    for (int y = 0; y < original.height(); y++)
+    {
+        for (int x = 0; x < original.width(); x++){
+            final.setPixel(x, y, original.pixel(x,y));
+        }
+    }
+
+    for (int y = 0; y < original2.height(); y++)
+    {
+        for (int x = 0; x < original2.width(); x++){
+
+            final.setPixel(x+original.width(), height - original.height() + y, original2.pixel(x,y));
+
+        }
+    }
+
+    return final;
+}
+
+QImage ImageProcessor::mask(QImage original, QImage original2, QImage mascara)
+{
+    QImage final(original.width(), original.height(), original.format());
+    for (int y = 0; y < original2.height(); y++)
+    {
+        for (int x = 0; x < original2.width(); x++){
+
+            QRgb cc = original.pixel(x,y);
+            QRgb cc2 = original2.pixel(x,y);
+            QRgb ccM = mascara.pixel(x,y);
+            QColor co = QColor::fromRgb(cc);
+            QColor co2 = QColor::fromRgb(cc2);
+            QColor coM = QColor::fromRgb(ccM);
+
+            int red = (int)(co.red()) ;
+            int green = (int)(co.green()) ;
+            int blue = (int)(co.blue());
+
+            int red2 = (int)(co2.red()) ;
+            int green2 = (int)(co2.green()) ;
+            int blue2 = (int)(co2.blue());
+
+            double maskc = (double)coM.blue() / (double)(0xFF);
+
+            int corR1 = (floor)(red * maskc);
+            int corG1 = (floor)(green * maskc);
+            int corB1 = (floor)(blue * maskc);
+
+            int corR2 = (floor)(red2 * (1-maskc));
+            int corG2 = (floor)(green2 * (1-maskc));
+            int corB2 = (floor)(blue2 * (1-maskc));
+
+            co.setRed(corR1+corR2);
+            co.setGreen(corG1+corG2);
+            co.setBlue(corB1+corB2);
+
+            final.setPixel(x, y, co.rgb());
+
+
+
+        }
+    }
+
+    return final;
+}
+
 QImage ImageProcessor::grayScale(QImage original)
 {
     QImage final(original.width(), original.height(), original.format());
@@ -186,6 +261,46 @@ QImage ImageProcessor::grayScale(QImage original)
             co.setRed((red + green + blue)/3);
             co.setGreen((red + green + blue)/3);
             co.setBlue((red + green + blue)/3);
+
+            final.setPixel(x, y, co.rgb());
+        }
+    }
+
+    return final;
+}
+
+
+QImage ImageProcessor::sepia(QImage original)
+{
+    QImage final(original.width(), original.height(), original.format());
+
+    for (int y = 0; y < original.height(); y++)
+    {
+        for (int x = original.width() - 1; x >= 0; x--)
+        {
+
+
+            QRgb cc = original.pixel(x,y);
+
+            QColor co = QColor::fromRgb(cc);
+
+            int red = (int)(co.red()) ;
+
+            int green = (int)(co.green()) ;
+
+            int blue = (int)(co.blue()) ;
+
+            int redFinal = (0.393*red + 0.769*green + 0.189*blue);
+            int greenFinal = (0.349*red + 0.686*green + 0.168*blue);
+            int blueFinal = (0.272*red + 0.534*green + 0.131*blue);
+
+            if (redFinal>0xFF) redFinal=0xFF;
+            if (greenFinal>0xFF) greenFinal=0xFF;
+            if (blueFinal>0xFF) blueFinal=0xFF;
+
+            co.setRed(redFinal);
+            co.setGreen(greenFinal);
+            co.setBlue((blueFinal));
 
             final.setPixel(x, y, co.rgb());
         }

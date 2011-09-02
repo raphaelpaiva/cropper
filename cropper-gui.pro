@@ -27,7 +27,10 @@ SOURCES += main.cpp\
     command/grayscale.cpp \
     command/popart.cpp \
     command/crazy.cpp \
-    command/merge.cpp
+    command/merge.cpp \
+    command/append.cpp \
+    command/mask.cpp \
+    command/sepia.cpp
 
 HEADERS  += mainwindow.h\
     command/command.h \
@@ -45,6 +48,9 @@ HEADERS  += mainwindow.h\
     command/grayscale.h \
     command/popart.h \
     command/crazy.h \
-    command/merge.h
+    command/merge.h \
+    command/append.h \
+    command/mask.h \
+    command/sepia.h
 
 FORMS    += mainwindow.ui

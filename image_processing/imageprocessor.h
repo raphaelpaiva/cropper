@@ -19,6 +19,9 @@ public:
     static QImage popArt(QImage original);
     static QImage crazy(QImage original);
     static QImage merge(QImage original, QImage original2);
+    static QImage append(QImage original, QImage original2);
+    static QImage mask(QImage original, QImage original2, QImage mascara);
+    static QImage sepia(QImage original);
 };
 
 #endif // IMAGEPROCESSOR_H

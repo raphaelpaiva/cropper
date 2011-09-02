@@ -22,6 +22,9 @@
 #include "command/popart.h"
 #include "command/crazy.h"
 #include "command/merge.h"
+#include "command/append.h"
+#include "command/mask.h"
+#include "command/sepia.h"
 
 QMap<QString, Command*> command_map;
 QTextStream qout(stdout);
@@ -41,6 +44,9 @@ void init_command_map()
     PopArt *popArt = new PopArt();
     Crazy *crazy = new Crazy();
     Merge *merge = new Merge();
+    Append *append = new Append();
+    Mask *mask = new Mask();
+    Sepia *sepia = new Sepia();
 
     command_map[cropper->name] = cropper;
     command_map[resize->name]  = resize;
@@ -55,6 +61,9 @@ void init_command_map()
     command_map[popArt->name]  = popArt;
     command_map[crazy->name]  = crazy;
     command_map[merge->name]  = merge;
+    command_map[append->name]  = append;
+    command_map[mask->name]  = mask;
+    command_map[sepia->name]  = sepia;
 }
 
 
