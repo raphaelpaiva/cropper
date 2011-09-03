@@ -25,6 +25,7 @@ public:
     static QImage xray(QImage original);
     static QImage flipHorizontal(QImage original);
     static QImage flipVertical(QImage original);
+    static QImage makeIt3d(QImage original, QImage original2);
 };
 
 #endif // IMAGEPROCESSOR_H

@@ -28,6 +28,7 @@
 #include "command/xray.h"
 #include "command/fliphorizontal.h"
 #include "command/flipvertical.h"
+#include "command/makeit3d.h"
 
 QMap<QString, Command*> command_map;
 QTextStream qout(stdout);
@@ -53,6 +54,7 @@ void init_command_map()
     XRay *xray = new XRay();
     FlipHorizontal *fh = new FlipHorizontal();
     FlipVertical *fv = new FlipVertical();
+    MakeIt3d *img3d = new MakeIt3d();
 
     command_map[cropper->name] = cropper;
     command_map[resize->name]  = resize;
@@ -73,6 +75,7 @@ void init_command_map()
     command_map[xray->name]  = xray;
     command_map[fh->name]  = fh;
     command_map[fv->name]  = fv;
+    command_map[img3d->name]  = img3d;
 }
 
 

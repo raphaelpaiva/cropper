@@ -337,6 +337,28 @@ QImage ImageProcessor::grayScale(QImage original)
     return final;
 }
 
+QImage ImageProcessor::makeIt3d(QImage original, QImage original2)
+{
+    QImage final(original.width(), original.height(), original.format());
+
+    for (int y = 0; y < original.height(); y++)
+    {
+        for (int x = original.width() - 1; x >= 0; x--)
+        {
+
+
+            int red = original.pixel(x,y);
+            red = red & 0xFF0000;
+
+            int blue = original2.pixel(x,y);
+            blue = blue & 0x0000FF;
+
+            final.setPixel(x, y, red + blue);
+        }
+    }
+
+    return final;
+}
 
 QImage ImageProcessor::sepia(QImage original)
 {
@@ -442,7 +464,7 @@ QImage ImageProcessor::rotate(QImage original)
     {
         for (int x = 0; x < original.width(); x++)
         {
-            int xr, yr, xr0, yr0;
+            int xr, yr;
             xr = (floor)(cos(pi/(double)2.0) * (x-x0) + sin(pi/(double)2.0) * (y - y0) + x0);
             yr = (floor)(sin(pi/(double)2.0) * (x-x0) - cos(pi/(double)2.0) * (y - y0) + y0);
 

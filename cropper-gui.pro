@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     command/sepia.cpp \
     command/xray.cpp \
     command/fliphorizontal.cpp \
-    command/flipvertical.cpp
+    command/flipvertical.cpp \
+    command/makeit3d.cpp
 
 HEADERS  += mainwindow.h\
     command/command.h \
@@ -57,6 +58,7 @@ HEADERS  += mainwindow.h\
     command/sepia.h \
     command/xray.h \
     command/fliphorizontal.h \
-    command/flipvertical.h
+    command/flipvertical.h \
+    command/makeit3d.h
 
 FORMS    += mainwindow.ui
