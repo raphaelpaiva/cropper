@@ -11,6 +11,7 @@ public:
     static QImage resize(QImage, int width, int height);
     static QImage mirror(QImage original);
     static QImage rotate(QImage orginal);
+    static QImage rotate2(QImage orginal);
     static QImage lightness(QImage orginal, double lightnessIntensity);
     static QImage InterpolatedScale(QImage original);
     static QImage Interpolated3(QImage original);

@@ -3,7 +3,7 @@
 #include <cmath>
 #include <QColor>
 #include <QPoint>
-
+#include <QTransform>
 #include <QDebug>
 
 QImage ImageProcessor::crop(QImage original, int x1, int y1, int x2, int y2)
@@ -451,35 +451,24 @@ QImage ImageProcessor::popArt(QImage original)
 
 QImage ImageProcessor::rotate(QImage original)
 {
+    QImage roda = original;
+    QTransform myTransform;
+    myTransform.rotate(90);
+    roda = roda.transformed(myTransform);
 
-    int tam;
-    if (original.width()>original.height()) tam = original.width(); else tam = original.height();
+    return roda;
 
-    QImage rotated(original.height(), original.width(), original.format());
+}
 
-    int x0 = original.width()/2;
-    int y0 = original.height()/2;
-    double pi = 3.14159265358979323846;
-    for (int y = 0; y < original.height(); y++)
-    {
-        for (int x = 0; x < original.width(); x++)
-        {
-            int xr, yr;
-            xr = (floor)(cos(pi/(double)2.0) * (x-x0) + sin(pi/(double)2.0) * (y - y0) + x0);
-            yr = (floor)(sin(pi/(double)2.0) * (x-x0) - cos(pi/(double)2.0) * (y - y0) + y0);
+QImage ImageProcessor::rotate2(QImage original)
+{
+    QImage roda = original;
+    QTransform myTransform;
+    myTransform.rotate(-90);
+    roda = roda.transformed(myTransform);
 
-            if(original.width()>=original.height()){
-            if(xr - 180 > 0 && yr + 180 < original.width())
-            rotated.setPixel( xr - 180, yr + 180, original.pixel(x, y));
-            }
-            if(original.width()<original.height()){
-            if(yr - 180 > 0 && xr + 180 < original.width())
-            rotated.setPixel(xr + 180, yr - 180, original.pixel(x, y));
-            }
-        }
-    }
+    return roda;
 
-    return rotated;
 }
 
 

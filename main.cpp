@@ -13,6 +13,7 @@
 #include "command/resize.h"
 #include "command/scale.h"
 #include "command/rotate.h"
+#include "command/rotate2.h"
 #include "command/mirror.h"
 #include "command/lightness.h"
 #include "command/interpolatedscale.h"
@@ -39,6 +40,7 @@ void init_command_map()
     Resize *resize   = new Resize();
     Scale  *scale    = new Scale();
     Rotate *rotate   = new Rotate();
+    Rotate2 *rotate2   = new Rotate2();
     Mirror *mirror   = new Mirror();
     Lightness *lightness   = new Lightness();
     InterpolatedScale *interpolated = new InterpolatedScale();
@@ -60,6 +62,7 @@ void init_command_map()
     command_map[resize->name]  = resize;
     command_map[scale->name]   = scale;
     command_map[rotate->name]  = rotate;
+    command_map[rotate2->name]  = rotate2;
     command_map[mirror->name]  = mirror;
     command_map[lightness->name]  = lightness;
     command_map[interpolated->name] = interpolated;

@@ -6,7 +6,7 @@
 class Rotate : public Command
 {
 public:
-    Rotate() {name = "rotate";}
+    Rotate() {name = "rotateRight";}
 
     void run(QStringList args) throw(CommandException);
     QString usage();

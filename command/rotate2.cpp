@@ -1,9 +1,10 @@
-#include "rotate.h"
+#include "rotate2.h"
+
 #include "../image_processing/imageprocessor.h"
 
 #include <QString>
 
-void Rotate::run(QStringList args) throw(CommandException)
+void Rotate2::run(QStringList args) throw(CommandException)
 {
     if (args.size() != 2 || args.isEmpty()) {
         throw CommandException("rotate requires 2 parameters: sourcefile destfile");
@@ -21,11 +22,11 @@ void Rotate::run(QStringList args) throw(CommandException)
 
     QImage original(sourcefile);
     QImage rotated = original;
-    rotated = ImageProcessor::rotate(rotated);
+    rotated = ImageProcessor::rotate2(rotated);
     rotated.save(destfile);
 }
 
-QString Rotate::usage()
+QString Rotate2::usage()
 {
     return "<sourcefile> <desrfile>";
 }
