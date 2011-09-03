@@ -51,18 +51,56 @@ QImage ImageProcessor::resize(QImage original, int width, int height)
 
 QImage ImageProcessor::mirror(QImage original)
 {
-    QImage mirrored(original.width(), original.height(), original.format());
+    int width = original.width() * 2;
+    QImage mirrored(width, original.height(), original.format());
 
     for (int y = 0; y < original.height(); y++)
     {
         for (int x = original.width() - 1; x >= 0; x--)
         {
             mirrored.setPixel(x, y, original.pixel((original.width() - 1) - x, y));
+            mirrored.setPixel(x + original.width(), y, original.pixel(x,y));
         }
+
     }
 
     return mirrored;
 }
+
+QImage ImageProcessor::flipHorizontal(QImage original)
+{
+
+    QImage final(original.width(), original.height(), original.format());
+
+    for (int y = 0; y < original.height(); y++)
+    {
+        for (int x = original.width() - 1; x >= 0; x--)
+        {
+            final.setPixel(x, y, original.pixel((original.width() - 1) - x, y));
+        }
+
+    }
+
+    return final;
+}
+
+QImage ImageProcessor::flipVertical(QImage original)
+{
+
+    QImage final(original.width(), original.height(), original.format());
+
+    for (int y = 0; y < original.height(); y++)
+    {
+        for (int x = original.width() - 1; x >= 0; x--)
+        {
+            final.setPixel(x, y, original.pixel(x, (original.height() - 1) - y));
+        }
+
+    }
+
+    return final;
+}
+
 
 QImage ImageProcessor::merge(QImage original, QImage original2)
 {
@@ -157,6 +195,36 @@ QImage ImageProcessor::crazy(QImage original)
 
 
             final.setPixel(x, y, (r + g + b));
+        }
+    }
+
+    return final;
+}
+
+QImage ImageProcessor::xray(QImage original)
+{
+    QImage final(original.width(), original.height(), original.format());
+
+    for (int y = 0; y < original.height(); y++)
+    {
+        for (int x = original.width() - 1; x >= 0; x--)
+        {
+
+            QRgb cc = original.pixel(x,y);
+
+            QColor co = QColor::fromRgb(cc);
+
+            int red = (int)(co.red()) ;
+            int green = (int)(co.green()) ;
+            int blue = (int)(co.blue()) ;
+
+            co.setRed(red ^ 0xFF);
+            co.setGreen(green ^ 0xFF);
+            co.setBlue(blue ^ 0xFF);
+
+            final.setPixel(x, y, co.rgb());
+
+
         }
     }
 
@@ -361,13 +429,31 @@ QImage ImageProcessor::popArt(QImage original)
 
 QImage ImageProcessor::rotate(QImage original)
 {
+
+    int tam;
+    if (original.width()>original.height()) tam = original.width(); else tam = original.height();
+
     QImage rotated(original.height(), original.width(), original.format());
 
+    int x0 = original.width()/2;
+    int y0 = original.height()/2;
+    double pi = 3.14159265358979323846;
     for (int y = 0; y < original.height(); y++)
     {
         for (int x = 0; x < original.width(); x++)
         {
-            rotated.setPixel(y, x, original.pixel(x, y));
+            int xr, yr, xr0, yr0;
+            xr = (floor)(cos(pi/(double)2.0) * (x-x0) + sin(pi/(double)2.0) * (y - y0) + x0);
+            yr = (floor)(sin(pi/(double)2.0) * (x-x0) - cos(pi/(double)2.0) * (y - y0) + y0);
+
+            if(original.width()>=original.height()){
+            if(xr - 180 > 0 && yr + 180 < original.width())
+            rotated.setPixel( xr - 180, yr + 180, original.pixel(x, y));
+            }
+            if(original.width()<original.height()){
+            if(yr - 180 > 0 && xr + 180 < original.width())
+            rotated.setPixel(xr + 180, yr - 180, original.pixel(x, y));
+            }
         }
     }
 

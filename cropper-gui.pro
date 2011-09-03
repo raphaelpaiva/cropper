@@ -30,7 +30,10 @@ SOURCES += main.cpp\
     command/merge.cpp \
     command/append.cpp \
     command/mask.cpp \
-    command/sepia.cpp
+    command/sepia.cpp \
+    command/xray.cpp \
+    command/fliphorizontal.cpp \
+    command/flipvertical.cpp
 
 HEADERS  += mainwindow.h\
     command/command.h \
@@ -51,6 +54,9 @@ HEADERS  += mainwindow.h\
     command/merge.h \
     command/append.h \
     command/mask.h \
-    command/sepia.h
+    command/sepia.h \
+    command/xray.h \
+    command/fliphorizontal.h \
+    command/flipvertical.h
 
 FORMS    += mainwindow.ui

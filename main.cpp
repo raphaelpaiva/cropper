@@ -25,6 +25,9 @@
 #include "command/append.h"
 #include "command/mask.h"
 #include "command/sepia.h"
+#include "command/xray.h"
+#include "command/fliphorizontal.h"
+#include "command/flipvertical.h"
 
 QMap<QString, Command*> command_map;
 QTextStream qout(stdout);
@@ -47,6 +50,9 @@ void init_command_map()
     Append *append = new Append();
     Mask *mask = new Mask();
     Sepia *sepia = new Sepia();
+    XRay *xray = new XRay();
+    FlipHorizontal *fh = new FlipHorizontal();
+    FlipVertical *fv = new FlipVertical();
 
     command_map[cropper->name] = cropper;
     command_map[resize->name]  = resize;
@@ -64,6 +70,9 @@ void init_command_map()
     command_map[append->name]  = append;
     command_map[mask->name]  = mask;
     command_map[sepia->name]  = sepia;
+    command_map[xray->name]  = xray;
+    command_map[fh->name]  = fh;
+    command_map[fv->name]  = fv;
 }
 
 

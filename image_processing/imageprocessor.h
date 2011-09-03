@@ -22,6 +22,9 @@ public:
     static QImage append(QImage original, QImage original2);
     static QImage mask(QImage original, QImage original2, QImage mascara);
     static QImage sepia(QImage original);
+    static QImage xray(QImage original);
+    static QImage flipHorizontal(QImage original);
+    static QImage flipVertical(QImage original);
 };
 
 #endif // IMAGEPROCESSOR_H
