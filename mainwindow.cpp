@@ -17,9 +17,9 @@ MainWindow::MainWindow(QWidget *parent) :
     scrollArea->setWidget(imageLabel);
 
     setCentralWidget(scrollArea);
-    setWindowTitle(tr("Cropper"));
+    setWindowTitle(tr("Cropper Result"));
 
-    resize(500, 400);
+    showMaximized();
 }
 
 MainWindow::~MainWindow()
