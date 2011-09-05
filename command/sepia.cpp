@@ -17,6 +17,8 @@ void Sepia::run(QStringList args) throw(CommandException)
    // original = ImageProcessor::grayScale(original);
     QImage result = ImageProcessor::sepia(original);
 
+    working_image = result;
+
     result.save(destfile);
 }
 

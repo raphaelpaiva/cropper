@@ -22,6 +22,9 @@ void Lightness::run(QStringList args) throw(CommandException){
     QImage original(sourcefile);
 
     QImage result = ImageProcessor::lightness(original,l);
+
+    working_image = result;
+
     result.save(destfile);
 
 }

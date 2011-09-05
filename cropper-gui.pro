@@ -63,4 +63,4 @@ HEADERS  += mainwindow.h\
     command/makeit3d.h \
     command/rotate2.h
 
-FORMS    += mainwindow.ui
+FORMS    +=

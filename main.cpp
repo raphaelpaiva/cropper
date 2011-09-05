@@ -31,6 +31,8 @@
 #include "command/flipvertical.h"
 #include "command/makeit3d.h"
 
+#include "mainwindow.h"
+
 QMap<QString, Command*> command_map;
 QTextStream qout(stdout);
 
@@ -125,6 +127,8 @@ void print_usage()
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    bool render_gui = true;
+    int ret_value = 0;
 
     init_command_map();
 
@@ -134,9 +138,12 @@ int main(int argc, char *argv[])
     {
         print_usage();
         a.exit();
+        render_gui = false;
     }
 
     QMapIterator<Command *, QStringList> i(tasks);
+
+    QImage image;
 
     while(i.hasNext())
     {
@@ -145,16 +152,33 @@ int main(int argc, char *argv[])
         try
         {
             i.key()->run(i.value());
+
+            image = i.key()->working_image;
         }
         catch (CommandException& cme)
         {
             qout << "Exception running command " << i.key()->name << ": " << cme.message  << "." << endl;
 
             qout << i.key()->name << " usage:" << endl << "\t " << i.key()->usage() << endl;
+
+            render_gui = false;
         }
     }
 
-    a.exit();
+    if (render_gui)
+    {
+        MainWindow m;
 
-    return 0;
+        m.setImage(image);
+
+        m.show();
+
+        ret_value = a.exec();
+    }
+    else
+    {
+        a.exit();
+    }
+
+    return ret_value;
 }

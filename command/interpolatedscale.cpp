@@ -16,6 +16,8 @@ void InterpolatedScale::run(QStringList args) throw(CommandException)
 
     QImage result = ImageProcessor::InterpolatedScale(original);
 
+    working_image = result;
+
     result.save(destfile);
 }
 

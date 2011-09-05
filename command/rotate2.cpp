@@ -22,7 +22,11 @@ void Rotate2::run(QStringList args) throw(CommandException)
 
     QImage original(sourcefile);
     QImage rotated = original;
+
     rotated = ImageProcessor::rotate2(rotated);
+
+    working_image = rotated;
+
     rotated.save(destfile);
 }
 

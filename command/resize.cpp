@@ -33,6 +33,8 @@ void Resize::run(QStringList args) throw(CommandException)
 
     QImage scaled = ImageProcessor::resize(original, width, height);
 
+    working_image = scaled;
+
     scaled.save(destfile);
 }
 

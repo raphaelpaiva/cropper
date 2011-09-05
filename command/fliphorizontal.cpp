@@ -17,6 +17,8 @@ void FlipHorizontal::run(QStringList args) throw(CommandException)
 
     QImage result = ImageProcessor::flipHorizontal(original);
 
+    working_image = result;
+
     result.save(destfile);
 }
 

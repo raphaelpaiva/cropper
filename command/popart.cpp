@@ -17,6 +17,8 @@ void PopArt::run(QStringList args) throw(CommandException)
 
     QImage result = ImageProcessor::popArt(original);
 
+    working_image = result;
+
     result.save(destfile);
 }
 

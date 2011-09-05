@@ -17,6 +17,8 @@ void XRay::run(QStringList args) throw(CommandException)
     original = ImageProcessor::grayScale(original);
     QImage result = ImageProcessor::xray(original);
 
+    working_image = result;
+
     result.save(destfile);
 }
 

@@ -16,6 +16,8 @@ void Interpolated3::run(QStringList args) throw(CommandException)
 
     QImage result = ImageProcessor::Interpolated3(original);
 
+    working_image = result;
+
     result.save(destfile);
 }
 

@@ -24,6 +24,8 @@ void Merge::run(QStringList args) throw(CommandException)
 
     QImage result = ImageProcessor::merge(original,original2);
 
+    working_image = result;
+
     result.save(destfile);
 }
 

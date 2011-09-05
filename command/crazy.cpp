@@ -17,6 +17,8 @@ void Crazy::run(QStringList args) throw(CommandException)
 
     QImage result = ImageProcessor::crazy(original);
 
+    working_image = result;
+
     result.save(destfile);
 }
 

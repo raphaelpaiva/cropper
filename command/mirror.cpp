@@ -16,6 +16,8 @@ void Mirror::run(QStringList args) throw(CommandException)
 
     QImage mirrored = ImageProcessor::mirror(original);
 
+    working_image = mirrored;
+
     mirrored.save(destfile);
 }
 

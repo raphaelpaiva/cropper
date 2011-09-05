@@ -23,6 +23,9 @@ void MakeIt3d::run(QStringList args) throw(CommandException){
     QImage original2(sourcefile2);
 
     QImage result = ImageProcessor::makeIt3d(original,original2);
+
+    working_image = result;
+
     result.save(destfile);
 
 }

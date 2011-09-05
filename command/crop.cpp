@@ -31,6 +31,8 @@ void Cropper::run(QStringList args) throw(CommandException)
 
     QImage cropped = ImageProcessor::crop(original, x1, y1, x2, y2);
 
+    working_image = cropped;
+
     cropped.save(destfile);
 }
 
